@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battleship : MonoBehaviour
+public class Battleship : Ship
 {
     // Start is called before the first frame update
     void Start()
