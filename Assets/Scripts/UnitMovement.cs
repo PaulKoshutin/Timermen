@@ -40,6 +40,10 @@ public class UnitMovement : MonoBehaviour
     }
 
     void Move() {
+        UnitSelections.Instance.unitsSelected[0].transform.LookAt(targetPosition);
+        // Vector3 direction = targetPosition - UnitSelections.Instance.unitsSelected[0].transform.position;
+        // Quaternion rotation = Quaternion.LookRotation(direction);
+        // UnitSelections.Instance.unitsSelected[0].transform.rotation = Quaternion.Lerp(UnitSelections.Instance.unitsSelected[0].transform.rotation, rotation, speed * Time.deltaTime);
         UnitSelections.Instance.unitsSelected[0].transform.position = Vector3.MoveTowards(UnitSelections.Instance.unitsSelected[0].transform.position, targetPosition, speed * Time.deltaTime);
         Debug.Log(UnitSelections.Instance.unitsSelected[0].transform.position);
         if (UnitSelections.Instance.unitsSelected[0].transform.position == targetPosition)
