@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class Zoom : MonoBehaviour
@@ -8,6 +9,11 @@ public class Zoom : MonoBehaviour
     public float minZoom;
     public float sensityvity;
 
+    public float limitLeft;
+    public float limitRigth;
+    public float limitTop;
+    public float limitBotton;
+
     private Vector3 Origin;
     private Vector3 Difference;
     private bool drag;
@@ -15,7 +21,7 @@ public class Zoom : MonoBehaviour
     private void Update()
     {
         
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             Difference = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
             if (drag == false)
@@ -34,14 +40,43 @@ public class Zoom : MonoBehaviour
             Camera.main.transform.position = Origin - Difference;
         }
 
+        Camera.main.transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, limitLeft, limitRigth),
+            Mathf.Clamp(transform.position.y, limitBotton, limitTop),
+            transform.position.z);
+
         if (Input.GetKey(KeyCode.LeftControl))
         {
             ZoomCamera(Input.GetAxis("Mouse ScrollWheel"));
         }
     }
 
-    void ZoomCamera(float increment)
+    private void ZoomCamera(float increment)
     {
         GetComponent<Camera>().orthographicSize = Mathf.Clamp(GetComponent<Camera>().orthographicSize - increment * sensityvity, minZoom, maxZoom);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(
+            new Vector2(limitLeft, limitTop),
+            new Vector2(limitRigth, limitTop)
+            );
+
+        Gizmos.DrawLine(
+            new Vector2(limitLeft, limitBotton),
+            new Vector2(limitRigth, limitBotton)
+            );
+
+        Gizmos.DrawLine(
+            new Vector2(limitLeft, limitTop),
+            new Vector2(limitLeft, limitBotton)
+            );
+
+        Gizmos.DrawLine(
+            new Vector2(limitRigth, limitTop),
+            new Vector2(limitRigth, limitBotton)
+            );
     }
 }
