@@ -1,22 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public float visualRange;
     protected bool visible;
+
+    private string name = "Ship";
+    private float attack = 5;
+    private float defense = 10;
+    private float healthPoints = 100;
+
+    public float visualRange;
     public float scanRange;
     public float scanSize;
     public List<GameObject> scannedFoes;
-    private float attack;
-    private float defense;
-    private float healthPoints;
     public bool isMoving = false;
     public Vector3 targetPosition;
     private float speed = 3.0f;
-
     public GameObject indicatorPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -164,7 +168,25 @@ public class Ship : MonoBehaviour
         
     }
 
-
+    public string GetName()
+    {
+        return name;
+    }
+    
+    public string GetAttack()
+    {
+        return attack.ToString();
+    }
+    
+    public string GetDefense()
+    {
+        return defense.ToString();
+    }
+    
+    public string GetHealthPoints()
+    {
+        return healthPoints.ToString();
+    }
 
 
 }

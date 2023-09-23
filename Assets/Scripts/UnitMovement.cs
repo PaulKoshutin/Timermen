@@ -29,7 +29,7 @@ public class UnitMovement : MonoBehaviour
             {
                 targetPosition = hit.point;
                 isMoving = true;
-                Debug.Log(isMoving); 
+               // Debug.Log(isMoving); 
             }
         }
 
@@ -62,7 +62,7 @@ public class UnitMovement : MonoBehaviour
     void Move() 
     {
         UnitSelections.Instance.unitsSelected[0].transform.position = Vector3.MoveTowards(UnitSelections.Instance.unitsSelected[0].transform.position, targetPosition, speed * Time.deltaTime);
-        Debug.Log(UnitSelections.Instance.unitsSelected[0].transform.position);
+        //Debug.Log(UnitSelections.Instance.unitsSelected[0].transform.position);
         if (UnitSelections.Instance.unitsSelected[0].transform.position == targetPosition)
         {
             isMoving = false;

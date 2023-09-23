@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AI
   - Time
+  - HealthPoint
   layers:
   - Default
   - TransparentFX
