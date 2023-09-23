@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
-    public float visualRange;
     protected bool visible;
+
+    private string name = "Ship";
+    private float attack = 5;
+    private float defense = 10;
+    private float healthPoints = 100;
+
+    public float visualRange;
     public float scanRange;
     public float scanSize;
     public List<GameObject> scannedFoes;
@@ -206,4 +213,26 @@ public class Ship : MonoBehaviour
         if (healthPoints <= 0)
             Destroy(gameObject);
     }
+}
+    public string GetName()
+    {
+        return name;
+    }
+    
+    public string GetAttack()
+    {
+        return attack.ToString();
+    }
+    
+    public string GetDefense()
+    {
+        return defense.ToString();
+    }
+    
+    public string GetHealthPoints()
+    {
+        return healthPoints.ToString();
+    }
+
+
 }

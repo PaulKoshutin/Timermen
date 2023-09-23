@@ -6,12 +6,12 @@ TagManager:
   tags:
   - AI
   - Time
-  - Ammo
+  - HealthPoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Clickable
   - Water
   - UI
   - 
