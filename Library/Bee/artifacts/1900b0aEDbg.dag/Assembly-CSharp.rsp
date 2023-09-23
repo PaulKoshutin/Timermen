@@ -377,11 +377,8 @@
 "Assets/Scripts/Carrier.cs"
 "Assets/Scripts/Cruiser.cs"
 "Assets/Scripts/Destroyer.cs"
-"Assets/Scripts/GameSpeed.cs"
-"Assets/Scripts/GeneralKeys.cs"
 "Assets/Scripts/Ship.cs"
 "Assets/Scripts/Submarine.cs"
-"Assets/Scripts/Timer.cs"
 -langversion:9.0
 
 /deterministic
