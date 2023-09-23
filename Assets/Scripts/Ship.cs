@@ -12,8 +12,30 @@ public class Ship : MonoBehaviour
     private float attack;
     private float defense;
     private float healthPoints;
+    public bool isMoving = false;
+    public Vector3 targetPosition;
+    private float speed = 3.0f;
 
     public GameObject indicatorPrefab;
+    // Start is called before the first frame update
+    void Start()
+    {
+        UnitSelections.Instance.unitList.Add(this.gameObject);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isMoving)
+        {
+            Move();
+        }
+    }
+
+    void OnDestroy()
+    {
+        UnitSelections.Instance.unitList.Remove(this.gameObject);
+    }
 
     protected void Awake()
     {
@@ -29,6 +51,17 @@ public class Ship : MonoBehaviour
         Scan();
         CursorTrail();
     }
+
+    void Move()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        if (transform.position == targetPosition)
+        {
+            isMoving = false;
+        }
+    }
+
+
     protected void Scan()
     {
         string tagToFind;
@@ -49,7 +82,7 @@ public class Ship : MonoBehaviour
                 {
                     if (scannedFoes.Contains(foe))
                     {
-                        Transform indicator = transform.Find("Indicator"+ foe.name);
+                        Transform indicator = transform.Find("Indicator" + foe.name);
                         float width = 2 / result;
                         if (width < 0.05)
                             width = 0.05f;
@@ -75,7 +108,7 @@ public class Ship : MonoBehaviour
                         Vector3 dir = foe.transform.position - transform.position;
                         dir = foe.transform.InverseTransformDirection(dir);
                         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
-                        float randomError = Random.Range(-width*5, width * 5);
+                        float randomError = Random.Range(-width * 5, width * 5);
                         angle += randomError;
                         //indicator.transform.eulerAngles = new Vector3(0, 0, angle);
                         StartCoroutine(Rotate(angle, indicator.transform));
@@ -116,23 +149,23 @@ public class Ship : MonoBehaviour
         obj.rotation = Quaternion.Euler(0f, 0f, targetAngle);
         yield return null;
     }
-    void attackShip(Ship ship) {
-        
+    void attackShip(Ship ship)
+    {
+
     }
 
-    void getDamage(float damage) 
+    void getDamage(float damage)
     {
-        if ((damage - defense) <= 0) {
+        if ((damage - defense) <= 0)
+        {
             damage = 0;
-        } else {
+        }
+        else
+        {
             damage -= defense;
         }
 
         this.healthPoints -= damage;
-        
+
     }
-
-
-
-
 }
