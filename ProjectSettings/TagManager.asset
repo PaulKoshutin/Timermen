@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AI
   - Time
+  - Ammo
   layers:
   - Default
   - TransparentFX

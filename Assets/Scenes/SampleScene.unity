@@ -471,7 +471,15 @@ MonoBehaviour:
   scanRange: 0
   scanSize: 1
   scannedFoes: []
+  knownFoes: []
+  attack: 0
+  healthPoints: 0
+  isMoving: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  maxRechargeTime: 0
+  rechargeTime: 0
   indicatorPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
 --- !u!4 &865505631
 Transform:
   m_ObjectHideFlags: 0
@@ -613,6 +621,8 @@ GameObject:
   - component: {fileID: 1242585803}
   - component: {fileID: 1242585802}
   - component: {fileID: 1242585801}
+  - component: {fileID: 1242585806}
+  - component: {fileID: 1242585807}
   m_Layer: 0
   m_Name: DetectionTestShip (1)
   m_TagString: AI
@@ -688,7 +698,15 @@ MonoBehaviour:
   scanRange: 0
   scanSize: 1
   scannedFoes: []
-  indicatorPrefab: {fileID: 0}
+  knownFoes: []
+  attack: 1
+  healthPoints: 1
+  isMoving: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  maxRechargeTime: 2
+  rechargeTime: 0
+  indicatorPrefab: {fileID: 3183324346353729648, guid: dc7d4da8648c84f47aec485c85a759d3, type: 3}
+  ammoPrefab: {fileID: 3879710678662730439, guid: 82f5cfbaf6d205a43a261b9ca4b40293, type: 3}
 --- !u!4 &1242585803
 Transform:
   m_ObjectHideFlags: 0
@@ -697,14 +715,86 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242585800}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.94946414, w: 0.31387565}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.0281186, y: 3.4395373, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 968420668}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 143.414}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1242585806
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242585800}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 2
+--- !u!61 &1242585807
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242585800}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!1 &1381994939
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,7 +881,15 @@ MonoBehaviour:
   scanRange: 5
   scanSize: 1
   scannedFoes: []
+  knownFoes: []
+  attack: 1
+  healthPoints: 1
+  isMoving: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+  maxRechargeTime: 2
+  rechargeTime: 0
   indicatorPrefab: {fileID: 3183324346353729648, guid: dc7d4da8648c84f47aec485c85a759d3, type: 3}
+  ammoPrefab: {fileID: 3879710678662730439, guid: 82f5cfbaf6d205a43a261b9ca4b40293, type: 3}
 --- !u!4 &1381994942
 Transform:
   m_ObjectHideFlags: 0
@@ -801,7 +899,7 @@ Transform:
   m_GameObject: {fileID: 1381994939}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.95, y: 2, z: 0}
+  m_LocalPosition: {x: 0.95, y: 2.97, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

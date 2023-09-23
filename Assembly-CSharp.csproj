@@ -108,6 +108,7 @@
     <Compile Include="Assets\Scripts\Cruiser.cs" />
     <Compile Include="Assets\Scripts\ExitTemplate.cs" />
     <Compile Include="Assets\Scripts\UnitSelection.cs" />
+    <Compile Include="Assets\Scripts\Ammo.cs" />
     <Compile Include="Assets\Scripts\Submarine.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
   </ItemGroup>
