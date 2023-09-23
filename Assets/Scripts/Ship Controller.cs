@@ -8,6 +8,7 @@ public class ShipController : MonoBehaviour
     private bool isMoving = false;
     private Vector3 targetPosition;
     private float speed = 3.0f;
+    private object ship = null;
 
     void OnMouseDown() 
     {
@@ -36,7 +37,7 @@ public class ShipController : MonoBehaviour
 
 
     void Move() {
-        transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         if (transform.position == targetPosition)
         {
             isMoving = false;

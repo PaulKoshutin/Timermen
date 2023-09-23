@@ -12,8 +12,30 @@ public class Ship : MonoBehaviour
     private float attack;
     private float defense;
     private float healthPoints;
+    public bool isMoving = false;
+    public Vector3 targetPosition;
+    private float speed = 3.0f;
 
     public GameObject indicatorPrefab;
+    // Start is called before the first frame update
+    void Start()
+    {
+        UnitSelections.Instance.unitList.Add(this.gameObject);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isMoving) 
+        {
+            Move();
+        }
+    }
+
+    void OnDestroy()
+    {
+        UnitSelections.Instance.unitList.Remove(this.gameObject);
+    }
 
     protected void Awake()
     {
@@ -29,6 +51,16 @@ public class Ship : MonoBehaviour
         Scan();
         CursorTrail();
     }
+
+    void Move() {
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        if (transform.position == targetPosition)
+        {
+            isMoving = false;
+        }
+    }
+
+
     protected void Scan()
     {
         string tagToFind;
