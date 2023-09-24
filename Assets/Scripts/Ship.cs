@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Ship : MonoBehaviour
     private string name = "Ship";
     private float attack = 5;
     private float defense = 10;
-    private float healthPoints = 100;
+    private float healthPoints = 1;
 
     public float visualRange;
     public float scanRange;
@@ -22,6 +23,7 @@ public class Ship : MonoBehaviour
     public Vector3 targetPosition;
     public float maxRechargeTime;
     public float rechargeTime = 0;
+    public bool big;
 
     public GameObject indicatorPrefab;
     public GameObject ammoPrefab;
@@ -147,19 +149,49 @@ public class Ship : MonoBehaviour
                 }
             }
         }
+        Win();
     }
     protected void CursorTrail()
     {
         if (CompareTag("Player"))
         {
-            //StopAllCoroutines();
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Transform gun = transform.Find("GunSlot");
-            Vector3 dir = mousePosition - transform.position;
-            dir = transform.InverseTransformDirection(dir);
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
-            gun.eulerAngles = new Vector3(0, 0, angle);
-            //StartCoroutine(Rotate(angle, gun));
+            if (big)
+            {
+                //StopAllCoroutines();
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                Transform gun = transform.Find("GunSlot 1");
+                Vector3 dir = mousePosition - transform.position;
+                dir = transform.InverseTransformDirection(dir);
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+                gun.eulerAngles = new Vector3(0, 0, angle);
+                //StartCoroutine(Rotate(angle, gun));
+
+
+                gun = transform.Find("GunSlot 2");
+                dir = mousePosition - transform.position;
+                dir = transform.InverseTransformDirection(dir);
+                angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+                gun.eulerAngles = new Vector3(0, 0, angle);
+
+                gun = transform.Find("GunSlot 3");
+                dir = mousePosition - transform.position;
+                dir = transform.InverseTransformDirection(dir);
+                angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+                gun.eulerAngles = new Vector3(0, 0, angle);
+            }
+            else
+            {
+                //StopAllCoroutines();
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+                Transform gun = transform.Find("GunSlot 1");
+                Vector3 dir = mousePosition - transform.position;
+                dir = transform.InverseTransformDirection(dir);
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+                gun.eulerAngles = new Vector3(0, 0, angle);
+                //StartCoroutine(Rotate(angle, gun));
+            }
         }
     }
     IEnumerator Rotate(float targetAngle, Transform obj)
@@ -178,25 +210,76 @@ public class Ship : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1) && rechargeTime == 0)
             {
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Transform gun = transform.Find("GunSlot");
-                float distance = Vector3.Distance(transform.position, mousePosition);
-                GameObject ammo = Instantiate(ammoPrefab) as GameObject;
-                ammo.transform.eulerAngles = new Vector3(0, 0, gun.eulerAngles.z);
-                ammo.transform.position = transform.position;
-                ammo.GetComponent<Ammo>().damage = attack;
-                ammo.GetComponent<Ammo>().initialDistance = distance;
-                ammo.GetComponent<Ammo>().target = mousePosition;
-                rechargeTime = maxRechargeTime;
+                if (big)
+                {
+                    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Transform gun = transform.Find("GunSlot 1");
+                    float distance = Vector3.Distance(transform.position, mousePosition);
+                    GameObject ammo = Instantiate(ammoPrefab, transform) as GameObject;
+                    ammo.transform.eulerAngles = new Vector3(0, 0, gun.eulerAngles.z);
+                    ammo.transform.position = gun.position;
+                    ammo.transform.parent = null;
+                    ammo.GetComponent<Ammo>().damage = attack;
+                    ammo.GetComponent<Ammo>().initialDistance = distance;
+                    ammo.GetComponent<Ammo>().target = mousePosition;
+                    ammo.GetComponent<Ammo>().tagger = "Player";
+
+                    gun = transform.Find("GunSlot 2");
+                    distance = Vector3.Distance(transform.position, mousePosition);
+                    ammo = Instantiate(ammoPrefab, transform) as GameObject;
+                    ammo.transform.eulerAngles = new Vector3(0, 0, gun.eulerAngles.z);
+                    ammo.transform.position = gun.position;
+                    ammo.transform.parent = null;
+                    ammo.GetComponent<Ammo>().damage = attack;
+                    ammo.GetComponent<Ammo>().initialDistance = distance;
+                    ammo.GetComponent<Ammo>().target = mousePosition;
+                    ammo.GetComponent<Ammo>().tagger = "Player";
+
+                    gun = transform.Find("GunSlot 3");
+                    distance = Vector3.Distance(transform.position, mousePosition);
+                    ammo = Instantiate(ammoPrefab, transform) as GameObject;
+                    ammo.transform.eulerAngles = new Vector3(0, 0, gun.eulerAngles.z);
+                    ammo.transform.position = gun.position;
+                    ammo.transform.parent = null;
+                    ammo.GetComponent<Ammo>().damage = attack;
+                    ammo.GetComponent<Ammo>().initialDistance = distance;
+                    ammo.GetComponent<Ammo>().target = mousePosition;
+                    ammo.GetComponent<Ammo>().tagger = "Player";
+
+                    rechargeTime = maxRechargeTime;
+                }
+                else
+                {
+                    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Transform gun = transform.Find("GunSlot 1");
+                    float distance = Vector3.Distance(transform.position, mousePosition);
+                    GameObject ammo = Instantiate(ammoPrefab) as GameObject;
+                    ammo.transform.eulerAngles = new Vector3(0, 0, gun.eulerAngles.z);
+                    ammo.transform.position = transform.position;
+                    ammo.GetComponent<Ammo>().damage = attack;
+                    ammo.GetComponent<Ammo>().initialDistance = distance;
+                    ammo.GetComponent<Ammo>().target = mousePosition;
+                    ammo.GetComponent<Ammo>().tagger = "Player";
+                    rechargeTime = maxRechargeTime;
+                }
             }
         }
+    }
+    public void Win()
+    {
+        if (tag == "Player")
+            if (scannedFoes.Count == 0)
+                SceneManager.LoadScene(0);
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ammo")
         {
-            getDamage(collision.gameObject.GetComponent<Ammo>().damage);
-            Destroy(collision.gameObject);
+            if (collision.gameObject.GetComponent<Ammo>().tagger != tag)
+            {
+                getDamage(collision.gameObject.GetComponent<Ammo>().damage);
+                Destroy(collision.gameObject);
+            }
         }
         if (collision.gameObject.tag == "AI" || collision.gameObject.tag == "Player")
         {

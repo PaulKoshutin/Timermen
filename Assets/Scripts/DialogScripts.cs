@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogEdicationMan : MonoBehaviour
@@ -59,7 +60,7 @@ public class DialogEdicationMan : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-            // Диалог закончился дальше переключаем сцену
+            SceneManager.LoadScene(2);
         }
     }
 }

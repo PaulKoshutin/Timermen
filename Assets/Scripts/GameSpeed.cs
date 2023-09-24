@@ -12,7 +12,7 @@ public class GameSpeed : MonoBehaviour
 
     private void Awake()
     {
-        gameSpeed = 0;
+        gameSpeed = 4;
     }
 
     private void Update()

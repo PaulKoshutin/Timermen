@@ -29,40 +29,32 @@ public class UnitMovement : MonoBehaviour
             {
                 targetPosition = hit.point;
                 isMoving = true;
-               // Debug.Log(isMoving); 
+                Debug.Log(isMoving); 
             }
         }
 
         if (isMoving) 
         {
-            Move();
             RotateToTarget();
+            Move();
         }
     }
 
     void RotateToTarget() 
     {
-        Vector3 dir = targetPosition - UnitSelections.Instance.unitsSelected[0].transform.position;
-        //dir = transform.InverseTransformDirection(dir);
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
-        StartCoroutine(Rotate(angle, UnitSelections.Instance.unitsSelected[0].transform));
-    }
+        Transform unitTransform = UnitSelections.Instance.unitsSelected[0].transform;
+    
+        Vector3 targetDirection = targetPosition - unitTransform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
 
-    IEnumerator Rotate(float targetAngle, Transform obj)
-    {
-        while (obj.rotation.z != targetAngle)
-        {
-            obj.rotation = Quaternion.Slerp(obj.rotation, Quaternion.Euler(0f, 0f, targetAngle), 3f * Time.deltaTime);
-            yield return null;
-        }
-        obj.rotation = Quaternion.Euler(0f, 0f, targetAngle);
-        yield return null;
+        unitTransform.rotation = Quaternion.RotateTowards(unitTransform.rotation, targetRotation, speed * 30 * Time.deltaTime);
+
+        unitTransform.eulerAngles = new Vector3(0, 0, unitTransform.eulerAngles.z);
     }
 
     void Move() 
     {
         UnitSelections.Instance.unitsSelected[0].transform.position = Vector3.MoveTowards(UnitSelections.Instance.unitsSelected[0].transform.position, targetPosition, speed * Time.deltaTime);
-        //Debug.Log(UnitSelections.Instance.unitsSelected[0].transform.position);
         if (UnitSelections.Instance.unitsSelected[0].transform.position == targetPosition)
         {
             isMoving = false;

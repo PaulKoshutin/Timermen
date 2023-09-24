@@ -8,6 +8,7 @@ public class Ammo : MonoBehaviour
     public float initialDistance;
     public float effectiveDistance;
     public Vector3 target;
+    public string tagger;
 
     private void Start()
     {
