@@ -1019,7 +1019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &642704133
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1589,9 +1589,13 @@ MonoBehaviour:
   scanRange: 0
   scanSize: 1
   scannedFoes: []
+  knownFoes: []
   isMoving: 0
   targetPosition: {x: 0, y: 0, z: 0}
+  maxRechargeTime: 0
+  rechargeTime: 0
   indicatorPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
 --- !u!4 &1242585803
 Transform:
   m_ObjectHideFlags: 0
@@ -1766,9 +1770,13 @@ MonoBehaviour:
   scanRange: 100
   scanSize: 1
   scannedFoes: []
+  knownFoes: []
   isMoving: 0
   targetPosition: {x: 0, y: 0, z: 0}
+  maxRechargeTime: 0
+  rechargeTime: 0
   indicatorPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 0}
 --- !u!4 &1381994942
 Transform:
   m_ObjectHideFlags: 0

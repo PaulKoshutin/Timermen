@@ -7,6 +7,7 @@ public class Ship : MonoBehaviour
 {
     protected bool visible;
 
+    private float speed = 3.0f;
     private string name = "Ship";
     private float attack = 5;
     private float defense = 10;
@@ -17,11 +18,8 @@ public class Ship : MonoBehaviour
     public float scanSize;
     public List<GameObject> scannedFoes;
     public List<string> knownFoes;
-    public float attack;
-    public float healthPoints;
     public bool isMoving = false;
     public Vector3 targetPosition;
-    private float speed = 3.0f;
     public float maxRechargeTime;
     public float rechargeTime = 0;
 
@@ -213,7 +211,7 @@ public class Ship : MonoBehaviour
         if (healthPoints <= 0)
             Destroy(gameObject);
     }
-}
+
     public string GetName()
     {
         return name;
